@@ -1,0 +1,110 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --blue:rgb(0,0,255);
+    --greyishblue:rgb(78,123,138);
+    --lightblue:rgb(64, 153, 231);
+    --transparentblue:rgba(255,255,255,0.2);
+    --red:rgb(255,0,0);
+}
+
+body{
+    background-color:var(--greyishblue);
+}
+
+main{
+    position: relative;
+    padding-top: 20px;
+    min-height: 200px;
+    background-color:var(--lightblue) ;
+    width: 300px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 500px;
+    overflow-y:auto;
+
+}
+.dbox{
+    position: relative;
+    background-color:var(--transparentblue);
+    margin-top: 10px;
+    min-height:40px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+}
+ .del {
+    width: 50px;
+    height: 20px;
+    border: none;
+    border-radius: none;
+    background-color:var(--greyishblue);
+    position:absolute;
+    right:5px;
+
+
+}
+.enter{
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+}
+input[type='text']{
+    width: 70%;
+    
+}
+
+button{
+    width: 25%;
+    border: none;
+    color: aliceblue;
+    background-color:var(--blue);
+
+}
+p{
+    margin-right: 50px;
+}
+/* style for animation  */
+.dele{
+    position:relative;
+    animation: moveLeft 0.3s;
+    
+}
+
+
+@keyframes moveLeft {
+    from{
+    left:0;
+    }
+    to{
+        left: -150%;
+    }
+    
+}
+
+#top{
+    display: flex;
+    gap: 20%;
+}
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+    background-color:rgb(134, 133, 136);
+}
+::-webkit-scrollbar-thumb{
+    background-color:rgb(6, 80, 145);
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(94, 199, 238);
+}
