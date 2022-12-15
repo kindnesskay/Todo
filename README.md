@@ -1,7 +1,7 @@
 ## overview
 Warning! ugly project.
 A simple to do list web page with no save state and storage.
-As a simple delete animation.
+Has a simple delete animation.
 
 ## The Goal
 --Create a to-do app that adds input text to list
