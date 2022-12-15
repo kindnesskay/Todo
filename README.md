@@ -15,8 +15,12 @@ As a simple delete animation.
 - Semantic HTML5 markup
 - CSS custom properties
 - JavaScript
-
+### Continued development
+will Add more features later:
+-- local Storage
+-- better UI
+-- check box to mark completed task
+-- # It never ends.....
 ### Screenshot
-
 ![](./screenshot/Scroll_View.png.jpg)
 ![](./screenshot/view.png.jpg)
