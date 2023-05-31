@@ -1,37 +1,42 @@
-let addButton = document.querySelector("#add");
-let taskList = document.querySelector(".items");
-let field = document.querySelector("#todo");
-let counter = document.getElementById("counter");
-let con = 0;
-let id, date, time;
-function handle(){
-  // let info=document.querySelector('#info')
-  this.children.info.className== 'info hide_info'?
-    this.children.info.className='info':
-    this.children.info.className='info hide_info'
+import { getFromLocalStorage, updateAdd } from "./modules/localStorage.js";
+import { SaveToLocalStorage } from "./modules/localStorage.js";
+import { TextField } from "./modules/textField.js";
 
+const storage = getFromLocalStorage("todo");
+let taskList = document.querySelector(".items");
+let counter = document.getElementById("counter");
+const add_new_form = document.querySelector("#add_new");
+const plus_sign = document.querySelector("#plus_sign");
+
+// /
+function handle() {
+  this.children.info.classList.toggle("info");
+  this.children.info.classList.toggle("hide");
+}
+
+function updatecounter(array = []) {
+  let storage = getFromLocalStorage("todo");
+  array = storage ? storage.data : array;
+  return Number(array.length);
 }
 
 function createTask(content) {
-  con++; //counter increase
-
   //added item
   let div = document.createElement("div");
   div.className = "dbox";
-  div.id = content.id;
-
   // info
+  let time = new Date(content.date);
+  time = time.toLocaleTimeString("en-US");
   let info = document.createElement("div");
-  info.innerHTML = content.time;
-  info.className = "info hide_info";
+  info.innerHTML = time;
+  info.className = "hide";
   info.id = "info";
- 
   //the text
   let item = document.createElement("div");
   item.className = "item";
   item.addEventListener("click", handle);
   let p = document.createElement("p");
-  let itemText = document.createTextNode(content.value);
+  let itemText = document.createTextNode(content.text);
   p.appendChild(itemText);
   item.appendChild(p);
   item.appendChild(info);
@@ -40,103 +45,92 @@ function createTask(content) {
   let deleteButton = document.createElement("img");
   deleteButton.src = "./assets/trash.svg";
   deleteButton.className = "del";
-
+  deleteButton.id = content.id;
+  deleteButton.addEventListener("click", removeTask);
   //display all elements
   div.appendChild(item);
   div.appendChild(deleteButton);
   taskList.appendChild(div);
-
-  counter.innerHTML = con;
-  deleteButton.addEventListener("click", removeTask);
-
-  if (!field.value) {
-    return;
-  }
-  storeTask(content.value);
-  field.value = "";
+  // deleteButton.addEventListener("click", removeTask);
 }
 
-addButton.addEventListener("click", () => {
-  if (!field.value) {
-    return;
-  }
-  id = `${Math.random() * 100}${field.value}`;
-  date = new Date().toDateString();
-  time = new Date().toLocaleTimeString();
-  createTask({
-    value: field.value,
-    id: id,
-    time: time,
-  });
-});
+// template for the local storage
+export function Template(text = "demo", count = 1) {
+  return {
+    totalItems: Number(count),
+    data: [
+      {
+        text: String(text),
+        id: Number(count),
+        date: new Date(),
+      },
+    ],
+  };
+}
 
-//delete
+//delete task from storage and remove from screen
 function removeTask() {
-  let todoString = localStorage.getItem("todo");
-
-  if (todoString) {
-    let todo = JSON.parse(todoString);
-
-    if (todo && Array.isArray(todo)) {
-      let presentTask = todo.filter((element) => {
-        console.log(element.id, this.parentNode.id);
-        return element.id && element.id !== this.parentNode.id;
-      });
-
-      localStorage.setItem("todo", JSON.stringify(presentTask));
-    }
+  let id = this.id;
+  let items = storage.data;
+  let result = items.filter((item) => {
+    return item.id != id;
+  });
+  storage.data = result;
+  storage.totalItems -= 1;
+  if (!storage.totalItems) {
+    storage.totalItems = 0;
   }
-
+  SaveToLocalStorage(storage);
   // reduce counter by one
   this.parentNode.classList.add("dele");
   let clear = () => {
     this.parentNode.remove();
   };
   const myTimeout = setTimeout(clear, 280);
-  con--;
-  counter.innerHTML = con;
+  counter.innerText = updatecounter();
 }
 
-function storeTask(newTask) {
-  let taskList = [];
-  if (localStorage.getItem("todo")) {
-    //the old item
-    const oldStorage = JSON.parse(localStorage.getItem("todo"));
-    oldStorage.map((oldObject) => {
-      taskList.push(oldObject);
-    });
+// local
+function add(text) {
+  if (!text) {
+    return false;
   }
+  let count = updatecounter() ? updatecounter() + 1 : 1;
+  let content = Template(text, count);
+  if (getFromLocalStorage("todo")) {
+    SaveToLocalStorage(updateAdd(content));
+  } else {
+    SaveToLocalStorage(content);
+  }
+  counter.innerText = count;
+  return createTask(content.data[0]);
+}
 
-  // new item
-  taskList.push({
-    value: newTask,
-    date: date,
-    time: time,
-    id: id,
+
+
+function toggle(element, parent = "") {
+  let element_id = element.id;
+  if (document.getElementById(element_id)) {
+    document.getElementById(element_id).remove();
+    return false;
+  }
+  return parent.appendChild(element);
+}
+
+// end of functions
+if (storage) {
+  storage.data.map((task) => {
+    createTask(task);
+    counter.innerText=updatecounter()
   });
 
-  localStorage.setItem("todo", JSON.stringify(taskList));
 }
-// local
-JSON.parse(localStorage.getItem("todo")).map((todo) => {
-  createTask(todo);
+// text field
+let text_field = new TextField();
+text_field.setCallback(() => {
+  let text = text_field.fieldValue();
+  add(text);
 });
-
-
-// Add new task when the enter key is pressed
-field.addEventListener('keydown', function(event) {
-  if (event.code === 'Enter') {
-    if (!field.value) {
-      return;
-    }
-    id = `${Math.random() * 100}${field.value}`;
-    date = new Date().toDateString();
-    time = new Date().toLocaleTimeString();
-    createTask({
-      value: field.value,
-      id: id,
-      time: time,
-    })
-
-  }
+plus_sign.addEventListener("click", () => {
+  toggle(text_field.createForm(), add_new_form);
 });
