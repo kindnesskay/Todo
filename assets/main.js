@@ -4,12 +4,24 @@ let field = document.querySelector("#todo");
 let counter = document.getElementById("counter");
 let con = 0;
 let id, date, time;
-function handle(){
-  // let info=document.querySelector('#info')
-  this.children.info.className== 'info hide_info'?
-    this.children.info.className='info':
-    this.children.info.className='info hide_info'
 
+function handleStorageUpdate(name) {
+  let old_storage_method = localStorage.getItem(name);
+  console.log(old_storage_method);
+  let total, new_data;
+  let new_storage_method = {
+    totalItems: Number(total),
+    data: Array(new_data),
+  };
+  console.log(new_storage_method);
+}
+
+handleStorageUpdate("todo");
+function handle() {
+  // let info=document.querySelector('#info')
+  this.children.info.className == "info hide_info"
+    ? (this.children.info.className = "info")
+    : (this.children.info.className = "info hide_info");
 }
 
 function createTask(content) {
@@ -25,7 +37,7 @@ function createTask(content) {
   info.innerHTML = content.time;
   info.className = "info hide_info";
   info.id = "info";
- 
+
   //the text
   let item = document.createElement("div");
   item.className = "item";
@@ -122,10 +134,9 @@ JSON.parse(localStorage.getItem("todo")).map((todo) => {
   createTask(todo);
 });
 
-
 // Add new task when the enter key is pressed
-field.addEventListener('keydown', function(event) {
-  if (event.code === 'Enter') {
+field.addEventListener("keydown", function (event) {
+  if (event.code === "Enter") {
     if (!field.value) {
       return;
     }
@@ -136,7 +147,6 @@ field.addEventListener('keydown', function(event) {
       value: field.value,
       id: id,
       time: time,
-    })
-
+    });
   }
 });
