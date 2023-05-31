@@ -36,25 +36,29 @@ main {
   padding: 10px 10px;
 }
 .top {
-  margin-top: 10px;
+  margin-top: 20px;
   justify-content: space-between;
-  padding: 5px 0;
+  padding: 5px 10px;
 }
 .top h1{
   color:var(--primay_button);
 }
 
-.item {
+.task_element_text {
   width: 70%;
   word-break: break-all;
 }
-.info {
+/* show more info of task --- date added */
+.task_info {
   display: block;
   font-size: 12px;
 }
+/* hide more task_info */
 .hide {
   display: none;
 }
+
+/* holds all task main div */
 .items {
   margin-top: 5px;
   user-select: none;
@@ -65,9 +69,13 @@ main {
   flex-direction: column;
   gap: 7px;
 }
+.items h2:nth-child(1){
+  color:var(--primay_button);
 
-/* todo item */
-.dbox {
+}
+/* todo task_element_text */
+/* main div of task */
+.task_element {
   transition: all 0.3s;
   position: relative;
   border-radius: 5px;
@@ -79,20 +87,25 @@ main {
   padding: 10px;
   justify-content: space-between;
 }
-.dbox p {
+.task_element p {
   font-size: 15px;
   font-weight: 600;
   color: var(--primary_text);
 }
-.dbox:hover {
+.task_element:hover {
   transition: all 0.3s;
   transform: scale(105%);
   background-color: #dfe4e4;
 }
+/* delete icon styles */
 .del {
   width: auto;
   max-height: 15px;
 }
+.del:hover{
+  cursor: pointer;
+}
+/* form styles */
 .add_new form {
   margin-top: 10px;
   padding: 5px;

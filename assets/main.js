@@ -7,11 +7,10 @@ let taskList = document.querySelector(".items");
 let counter = document.getElementById("counter");
 const add_new_form = document.querySelector("#add_new");
 const plus_sign = document.querySelector("#plus_sign");
-
 // /
 function handle() {
-  this.children.info.classList.toggle("info");
-  this.children.info.classList.toggle("hide");
+  this.children.task_info.classList.toggle("task_info");
+  this.children.task_info.classList.toggle("hide");
 }
 
 function updatecounter(array = []) {
@@ -23,23 +22,23 @@ function updatecounter(array = []) {
 function createTask(content) {
   //added item
   let div = document.createElement("div");
-  div.className = "dbox";
-  // info
-  let time = new Date(content.date);
-  time = time.toLocaleTimeString("en-US");
-  let info = document.createElement("div");
-  info.innerHTML = time;
-  info.className = "hide";
-  info.id = "info";
-  //the text
-  let item = document.createElement("div");
-  item.className = "item";
-  item.addEventListener("click", handle);
+  div.className = "task_element";
+  // task info
+  let date_created = new Date(content.date);
+  date_created = date_created.toLocaleTimeString("en-US");
+  let task_info = document.createElement("div");
+  task_info.innerHTML = date_created;
+  task_info.className = "hide";
+  task_info.id = "task_info";
+  //task text
+  let task_element_text = document.createElement("div");
+  task_element_text.className = "task_element_text";
+  task_element_text.addEventListener("click", handle);
   let p = document.createElement("p");
-  let itemText = document.createTextNode(content.text);
-  p.appendChild(itemText);
-  item.appendChild(p);
-  item.appendChild(info);
+  let task_element_textText = document.createTextNode(content.text);
+  p.appendChild(task_element_textText);
+  task_element_text.appendChild(p);
+  task_element_text.appendChild(task_info);
 
   //add delete button to each element
   let deleteButton = document.createElement("img");
@@ -48,7 +47,7 @@ function createTask(content) {
   deleteButton.id = content.id;
   deleteButton.addEventListener("click", removeTask);
   //display all elements
-  div.appendChild(item);
+  div.appendChild(task_element_text);
   div.appendChild(deleteButton);
   taskList.appendChild(div);
   // deleteButton.addEventListener("click", removeTask);
@@ -118,6 +117,7 @@ function toggle(element, parent = "") {
 }
 
 // end of functions
+
 if (storage) {
   storage.data.map((task) => {
     createTask(task);
