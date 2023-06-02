@@ -18,7 +18,7 @@ The Todo app allows users to perform the following operations:
 
 ### Local Storage
 
-The Todo app utilizes the browser's local storage to store taks data
+The Todo app utilizes the browser's local storage to store task data
 
 ## Usage
 
