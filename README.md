@@ -1,24 +1,47 @@
-## overview
-Warning! ugly project.
-A simple to do list web page 
-## FEATURES
--- Add new task
--- Number of Task  
--- Delete Task
--- check Date and time added(click on item)
--- Simple delete animation.
-## The Goal
---Create a to-do app that adds input text to list
--- Delete items
--- Add a delete animmation
--- Count items added 
-### Built with
+# Todo App Documentation
 
-- Semantic HTML5 markup
-- CSS custom properties
+## Introduction
+
+The Todo app is a web-based application that allow users to create and delete task.This documentation provides an overview of the features and functionality of the Todo app
+
+## Features
+
+The Todo app has the the folloeing features:
+
+### Task management
+
+The Todo app allows users to perform the following operations
+
+- Create new task
+- Read existing task
+- Delete items
+
+### Local Storage
+
+The Todo app utilizes the browser's local storage to store tas data
+
+## Usage
+
+### Creating A Task
+
+- click on the "+" button
+- Enter the task name in the provided input field
+- Click on the "Add" button
+
+### Deleting A Task
+
+Click on the tash icon to delete
+
+## Built with
+
+- HTML
+- CSS
 - JavaScript
+- Local Storage
 
-### Screenshot
+## Additional Features (Upcoming)
 
-![](./screenshot/Scroll_View.png.jpg)
-![](./screenshot/view.png.jpg)
+The Todo app is continously evolving.
+
+## Screenshot
+![User Interface](./screenshot/interface.png)
