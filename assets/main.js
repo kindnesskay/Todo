@@ -4,6 +4,7 @@ let field = document.querySelector("#todo");
 let counter = document.getElementById("counter");
 let con = 0;
 let id, date, time;
+<<<<<<< HEAD
 
 function handleStorageUpdate(name) {
   let old_storage_method = localStorage.getItem(name);
@@ -24,6 +25,16 @@ function handle() {
     : (this.children.info.className = "info hide_info");
 }
 
+=======
+function handle(){
+  // let info=document.querySelector('#info')
+  this.children.info.className== 'info hide_info'?
+    this.children.info.className='info':
+    this.children.info.className='info hide_info'
+
+}
+
+>>>>>>> 317906c432c3de0625b17fa9e09c9056ff6642a5
 function createTask(content) {
   con++; //counter increase
 
@@ -37,7 +48,11 @@ function createTask(content) {
   info.innerHTML = content.time;
   info.className = "info hide_info";
   info.id = "info";
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 317906c432c3de0625b17fa9e09c9056ff6642a5
   //the text
   let item = document.createElement("div");
   item.className = "item";
@@ -134,9 +149,16 @@ JSON.parse(localStorage.getItem("todo")).map((todo) => {
   createTask(todo);
 });
 
+<<<<<<< HEAD
 // Add new task when the enter key is pressed
 field.addEventListener("keydown", function (event) {
   if (event.code === "Enter") {
+=======
+
+// Add new task when the enter key is pressed
+field.addEventListener('keydown', function(event) {
+  if (event.code === 'Enter') {
+>>>>>>> 317906c432c3de0625b17fa9e09c9056ff6642a5
     if (!field.value) {
       return;
     }
@@ -147,6 +169,11 @@ field.addEventListener("keydown", function (event) {
       value: field.value,
       id: id,
       time: time,
+<<<<<<< HEAD
     });
+=======
+    })
+
+>>>>>>> 317906c432c3de0625b17fa9e09c9056ff6642a5
   }
 });
