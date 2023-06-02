@@ -8,17 +8,42 @@ let counter = document.getElementById("counter");
 const add_new_form = document.querySelector("#add_new");
 const plus_sign = document.querySelector("#plus_sign");
 // /
+
+// version support
+/*
+support for storage method migrating all items stored
+with previos version
+*/
+function handleStorageUpdate(name) {
+  let old_storage_method = localStorage.getItem(name);
+  let total;
+  total = array.length;
+  let new_storage_method = {
+    totalItems: Number(total),
+    data: Array(old_storage_method),
+  };
+  return new_storage_method;
+}
+
+// end of code
+
+/*
+migrate 
+*/
+
 function handle() {
   this.children.task_info.classList.toggle("task_info");
   this.children.task_info.classList.toggle("hide");
 }
 
+// update the number of tasks stored
 function updatecounter(array = []) {
   let storage = getFromLocalStorage("todo");
   array = storage ? storage.data : array;
   return Number(array.length);
 }
 
+// cretate the task element
 function createTask(content) {
   //added item
   let div = document.createElement("div");
@@ -85,7 +110,7 @@ function removeTask() {
   let clear = () => {
     this.parentNode.remove();
   };
-  const myTimeout = setTimeout(clear, 280);
+  const myTimeout = setTimeout(clear, 200);
   counter.innerText = updatecounter();
 }
 
@@ -105,8 +130,7 @@ function add(text) {
   return createTask(content.data[0]);
 }
 
-
-
+// add and remove element the dom
 function toggle(element, parent = "") {
   let element_id = element.id;
   if (document.getElementById(element_id)) {
@@ -121,9 +145,8 @@ function toggle(element, parent = "") {
 if (storage) {
   storage.data.map((task) => {
     createTask(task);
-    counter.innerText=updatecounter()
+    counter.innerText = updatecounter();
   });
-
 }
 // text field
 let text_field = new TextField();
@@ -131,6 +154,10 @@ text_field.setCallback(() => {
   let text = text_field.fieldValue();
   add(text);
 });
+// show input field
 plus_sign.addEventListener("click", () => {
   toggle(text_field.createForm(), add_new_form);
+  if (document.getElementById(text_field.id)) {
+    text_field.text_field.focus();
+  }
 });

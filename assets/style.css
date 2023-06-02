@@ -40,8 +40,8 @@ main {
   justify-content: space-between;
   padding: 5px 10px;
 }
-.top h1{
-  color:var(--primay_button);
+.top h1 {
+  color: var(--primay_button);
 }
 
 .task_element_text {
@@ -64,14 +64,14 @@ main {
   user-select: none;
   display: flex;
   max-height: 80%;
-  overflow: auto;
-  padding: 0px 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 5px;
   flex-direction: column;
   gap: 7px;
 }
-.items h2:nth-child(1){
-  color:var(--primay_button);
-
+.items h2:nth-child(1) {
+  color: var(--primay_button);
 }
 /* todo task_element_text */
 /* main div of task */
@@ -102,10 +102,10 @@ main {
   width: auto;
   max-height: 15px;
 }
-.del:hover{
+.del:hover {
   cursor: pointer;
 }
-/* form styles */
+/* form styles  create  new task*/
 .add_new form {
   margin-top: 10px;
   padding: 5px;
@@ -118,7 +118,7 @@ main {
   border: none;
 }
 input[type="text"] {
-  outline-color:#fff;
+  outline-color: #fff;
   transition: all 0.3s;
   width: 70%;
   word-wrap: break-word;
@@ -127,7 +127,7 @@ input[type="text"]:hover {
   transition: all 0.3s;
 }
 
-input[type="text"]:focus{
+input[type="text"]:focus {
   transition: all 0.3s;
   outline-color: var(--primay_button);
 }

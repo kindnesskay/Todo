@@ -45,17 +45,4 @@ function sort(content = ["hi"], oldContent = ["hello"]) {
 }
 
 
-class LocalStorageUtils {
-  constructor(storage_name) {
-    this.storage_name = storage_name;
-  }
 
-  get(storage_name) {
-    if (localStorage.getItem(storage_name)) {
-      let data = localStorage.getItem(storage_name);
-      return JSON.parse(data);
-    }
-  }
-
-  editDataObject() {}
-}
