@@ -95,12 +95,15 @@ export function Template(text = "demo", count = 1) {
 //delete task from storage and remove from screen
 function removeTask() {
   let id = this.id;
-  let items = storage.data;
+  let items = getFromLocalStorage("todo");
+  items = items.data;
   let result = items.filter((item) => {
     return item.id != id;
   });
+
   storage.data = result;
-  storage.totalItems -= 1;
+  storage.totalItems = result.length;
+  console.log(storage);
   if (!storage.totalItems) {
     storage.totalItems = 0;
   }
