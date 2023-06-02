@@ -47,4 +47,4 @@ The Todo app is continously evolving.
 ![User Interface](./screenshot/interface.png)
 
 ## live Demonstration 
-[Click here](https://kindnesskay.github.io/To-do-/)
+[Click here](https://kindnesskay.github.io/Todo/)
