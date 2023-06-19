@@ -1,4 +1,5 @@
 * {
+  user-select: none;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -16,8 +17,8 @@ h2 {
   font-size: 15px;
 }
 body {
-  padding: 20px;
   height: 100vh;
+  padding-bottom: 10px;
   display: grid;
   place-items: center;
   background-color: #fff;
@@ -27,13 +28,13 @@ main {
   position: relative;
   width: clamp(100px, 300px, 500px);
   max-width: 500px;
-  margin-top: 10px;
+  margin-top: 2px;
   border-radius: 10px;
   position: relative;
   background-color: var(--primary_color);
   height: 100%;
   overflow: hidden;
-  padding: 10px 10px;
+  padding: 10px;
 }
 .top {
   margin-top: 20px;
@@ -44,20 +45,6 @@ main {
   color: var(--primay_button);
 }
 
-.task_element_text {
-  width: 70%;
-  word-break: break-all;
-}
-/* show more info of task --- date added */
-.task_info {
-  display: block;
-  font-size: 12px;
-}
-/* hide more task_info */
-.hide {
-  display: none;
-}
-
 /* holds all task main div */
 .items {
   margin-top: 5px;
@@ -66,37 +53,65 @@ main {
   max-height: 80%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 5px;
+  padding: 6px;
   flex-direction: column;
   gap: 7px;
 }
 .items h2:nth-child(1) {
   color: var(--primay_button);
 }
+
 /* todo task_element_text */
 /* main div of task */
 .task_element {
   transition: all 0.3s;
   position: relative;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #fff;
   display: flex;
   align-items: center;
   width: 100%;
   height: fit-content;
-  padding: 10px;
+  padding: 15px 10px;
   justify-content: space-between;
 }
-.task_element p {
+.task_element .task_element_text {
+  transition: all 0.3s;
   font-size: 15px;
   font-weight: 600;
   color: var(--primary_text);
 }
+.task_element:hover .task_element_text,
+.task_info {
+  transition: all 0.3s;
+  color: #fff;
+}
 .task_element:hover {
   transition: all 0.3s;
   transform: scale(105%);
-  background-color: #dfe4e4;
+  width: 97%;
+
+  background-color: #ff9a0ce2;
 }
+
+.task_element_text {
+  width: 70%;
+  word-break: break-all;
+}
+/* show more info of task --- date added */
+.task_element:hover .task_info {
+  transition: all 0.3s;
+  display: block;
+}
+.task_info {
+  display: none;
+  font-size: 12px;
+}
+/* hide more task_info */
+.hide {
+  display: none;
+}
+
 /* delete icon styles */
 .del {
   width: auto;
@@ -105,6 +120,7 @@ main {
 .del:hover {
   cursor: pointer;
 }
+
 /* form styles  create  new task*/
 .add_new form {
   margin-top: 10px;

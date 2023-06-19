@@ -6,11 +6,11 @@ The Todo app is a web-based application that allow users to create and delete ta
 
 ## Features
 
-The Todo app has the the folloeing features:
+The Todo app has the the following features:
 
 ### Task management
 
-The Todo app allows users to perform the following operations
+The Todo app allows users to perform the following operations:
 
 - Create new task
 - Read existing task
@@ -18,7 +18,7 @@ The Todo app allows users to perform the following operations
 
 ### Local Storage
 
-The Todo app utilizes the browser's local storage to store tas data
+The Todo app utilizes the browser's local storage to store task data
 
 ## Usage
 
@@ -47,4 +47,4 @@ The Todo app is continously evolving.
 ![User Interface](./screenshot/interface.png)
 
 ## live Demonstration 
-[Click here](https://kindnesskay.github.io/To-do-/)
+[Click here](https://kindnesskay.github.io/Todo/)

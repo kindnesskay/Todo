@@ -1,48 +1,61 @@
-import { Template } from "../main.js";
+// create class to manage saving items with only one paremiters
+export class Task {
+  constructor(name) {
+    this.activity = name;
+    this.dataBaseName = name;
+    this.dataBaseJson = "Please pull items with the 'update' method";
+    this.autoIncreament = 0;
+    this.item = "";
+    this.items = [];
+  }
 
-export function getFromLocalStorage(name) {
-  if (localStorage.getItem(name)) {
-    let data = localStorage.getItem(name);
-    return JSON.parse(data);
+  update() {
+    if (localStorage.getItem(this.dataBaseName)) {
+      let data = localStorage.getItem(this.dataBaseName);
+      // set the data to a variable
+      this.dataBaseJson = JSON.parse(data);
+      this.items = this.dataBaseJson.data;
+      // set the count object
+      this.autoIncreament = this.dataBaseJson.totalItems;
+      return true;
+    }
+    return false;
+  }
+
+  _updateSave() {
+    this.dataBaseJson.data = this.items;
+    console.log(this.items);
+    this.dataBaseJson.totalItems = this.autoIncreament;
+    try {
+      localStorage.setItem(
+        this.dataBaseName,
+        JSON.stringify(this.dataBaseJson)
+      );
+      return true;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  remove(id) {
+    this.items = this.items.filter((item) => item.id != id);
+    this._updateSave();
+    return `items with id '${id}' removed`;
+  }
+  create(name) {
+    try {
+      this.update();
+      // set the auto count and use as the new item id
+      this.autoIncreament += 1;
+      this.item = {
+        text: String(name),
+        id: this.autoIncreament,
+        date: new Date().toLocaleDateString(),
+      };
+      this.items = [...this.items, this.item];
+      this._updateSave();
+      return this.item;
+    } catch (error) {
+      return error;
+    }
   }
 }
-
-export function SaveToLocalStorage(newTask = {}) {
-  //   save
-  try {
-    localStorage.setItem("todo", JSON.stringify(newTask));
-  } catch (error) {
-    console.error(error);
-  }
-  return newTask;
-}
-
-export function updateAdd(content = {}) {
-  let oldStorage = getFromLocalStorage("todo");
-  for (let [key, value] of Object.entries(content)) {
-    oldStorage[key] = sort(value, oldStorage[key]);
-  }
-  return oldStorage;
-}
-
-function sort(content = ["hi"], oldContent = ["hello"]) {
-  let newContent;
-  switch (typeof content) {
-    case "object":
-      newContent = [...oldContent, ...content];
-      return newContent;
-      break;
-    case "string":
-      newContent = content;
-      return newContent;
-    case "number":
-      newContent = content;
-      return newContent;
-    default:
-      return typeof content;
-      break;
-  }
-}
-
-
-

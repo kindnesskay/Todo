@@ -2,9 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="theme-color" content="#ff9a0c" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Do App</title>
+    <title>TaskMaster</title>
+    <link rel="manifest" href="./manifest.json" />
+
     <link rel="stylesheet" type="text/css" href="./assets/style.css" />
   </head>
   <body>
@@ -13,8 +16,6 @@
         <h1>Task<span>Master</span></h1>
         <div class="plus">
           <span id="plus_sign">+</span>
-          <span></span>
-          <span></span>
         </div>
       </div>
       <div class="add_new" id="add_new"></div>
@@ -22,9 +23,11 @@
         <h2 style="text-align: center">
           All <span>Tasks</span> <span id="counter">0</span>
         </h2>
+        <p id="err">cannot get task at this time</p>
       </div>
     </main>
 
     <script src="./assets/main.js" type="module"></script>
+    <script src="./assets/app.js" type="module"></script>
   </body>
 </html>

@@ -1,0 +1,25 @@
+{
+ "short_name":"TaskMaster",
+ "start_url":"/",
+ "name":"TaskMaster:What do i need to get done",
+ "background_colr":"#ff9a0c",
+ "theme_color":"#ff9a0c",
+ "display":"standalone",
+ "background_color":"#fff",
+ "description":"Activity management app",
+ "icons":[
+    {
+        "src":"./assets/icon.png",
+        "type":"image/png",
+        "sizes":"512x512",
+        "purpose":"maskable"
+    },
+    {
+      "src": "./assets/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    }
+    
+ ]
+}
