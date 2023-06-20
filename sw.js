@@ -1,14 +1,14 @@
 const site_cache = "site-cache";
 const files = [
-  "/",
-  "index.html",
-  "/assets/app.js",
-  "/assets/main.js",
-  "/assets/trash.svg",
-  "/assets/style.css",
-  "/assets/modules/localStorage.js",
-  "/assets/modules/textField.js",
-  "manifest.json",
+  "/Todo/",
+  "Todo/index.html",
+  "/Todo/assets/app.js",
+  "/Todo/assets/main.js",
+  "/Todo/assets/trash.svg",
+  "/Todo/assets/style.css",
+  "/Todo/assets/modules/localStorage.js",
+  "/Todo/assets/modules/textField.js",
+  "/Todo/manifest.json",
 ];
 self.addEventListener("install", (evt) => {
   evt.waitUntil(
