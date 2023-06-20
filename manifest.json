@@ -1,6 +1,7 @@
 {
   "short_name": "TaskMaster",
-  "start_url": "https://kindnesskay.github.io/Todo",
+  "start_url": "/Todo/",
+  "id": "/Todo/",
   "name": "TaskMaster:What do i need to get done",
   "background_colr": "#ff9a0c",
   "theme_color": "#ff9a0c",
