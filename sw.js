@@ -1,7 +1,7 @@
 const site_cache = "site-cache";
 const files = [
   "/Todo/",
-  "Todo/index.html",
+  "/Todo/index.html",
   "/Todo/assets/app.js",
   "/Todo/assets/main.js",
   "/Todo/assets/trash.svg",
